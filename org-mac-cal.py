@@ -127,8 +127,17 @@ if __name__ == '__main__':
     elif args.all:
         startFilter = lambda d : True
     else:
-        # Day is the default
+        # Day is the default.
         startFilter = None
+
+        # Include usual org-mode headings for this case.
+        dt = datetime.date.today()
+        # %W date format is different from this number. Emacs uses this
+        # %number.
+        _, week, _ = dt.isocalendar()
+        print(f'* {dt:%Y}')
+        print(f'** {dt:%Y}-W{week}')
+        print(f'*** {dt:%Y-%m-%d %A}')
     
     main(startFilter)
 
